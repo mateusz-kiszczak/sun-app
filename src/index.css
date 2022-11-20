@@ -1,13 +1,466 @@
-body {
+/* 1. GLOBAL STYLES. */
+/* 2. REUSABLE STYLES. */
+/* 3. APP */
+/* 4. TOP SECTION */
+/* 5. CHANGE LOCATION */
+/* 6. DATA SECTION */
+/* 7. UTILITIES */
+
+
+/* 1. GLOBAL STYLES */
+
+* {
+  box-sizing: border-box;
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html {
+  color: #ffffff;
+  font-family: Lato, Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+
+body {
+  background-image: linear-gradient(to right top, #0468ff, #826efd, #b776f9, #df81f5, #ff90f1);
+  min-height: 100vh;
+}
+
+hr {
+  border: 1px solid #8cbaff;
+  margin: 20px 0 0 0;
+  opacity: 0.5;
+  width: 100%;
+}
+
+
+/* 2. REUSEBLE STYLES */
+
+.section-styles {
+  background-color: rgba(0, 65, 163, 0.65);
+  border: 1px solid #ab9eff;
+  border-radius: 15px;
+  box-shadow: inset 0 0  2px 1px #ab9eff;
+  padding: 12px 16px;
+}
+
+
+/* 3. APP */
+
+#app-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.fog-bg {
+  background-image: url("fog_background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-origin: border-box;
+  background-position-x: left;
+  background-position-y: 0%;
+  animation: fog 120s infinite;
+}
+
+@keyframes fog {
+  from {background-position-x: left;}
+  50% {background-position-x: right;}
+  to {background-position-x: left;}
+}
+
+/* 4. TOP SECTION */
+
+#top-section {
+  background-color: rgba(0, 65, 163, 0.85);
+  height: auto;
+  margin: 32px 16px 16px 16px;
+  min-width: 200px;
+  width: 80%;
+}
+
+#top-section-content {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 20px 0;
+  text-align: center;
+}
+
+#coordinates-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#coordinates-container div:first-of-type {
+  margin-bottom: 20px;
+}
+
+.coor-label {
+  color: #8cbaff;
+  text-transform: uppercase;
+}
+
+.coor-value {
+  font-size: 1.5rem;
+}
+
+#change-button,
+#close-button {
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  color: #8cbaff;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 4px 0 4px;
+  transition: color 200ms;
+  width: 100%;
+}
+
+#change-button span,
+#close-button span {
+  text-transform: uppercase;
+}
+
+#change-button:active,
+#close-button:active {
+  color: #ffffff;
+}
+
+@media only screen and (min-width: 1100px) {
+  #top-section {
+    width: 880px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  #change-button:hover,
+  #close-button:hover {
+    color: #ffffff;
+    transition: color 100ms;
+  }
+}
+
+
+/* 5. CHANGE LOCATION */
+
+#choose-location-container {
+  background-image: linear-gradient(to right top, #0468ff, #826efd, #b776f9, #df81f5, #ff90f1);
+  border-radius: 15px 15px 0 0;
+  bottom: 0;
+  overflow: hidden;
+  position: fixed;
+  width: 100vw;
+  z-index: 99;
+}
+
+#choose-location-bg {
+  background-color: rgba(0, 65, 163, 0.75);
+  border-radius: 15px 15px 0 0;
+  border-top: 1px solid #ab9eff;
+  box-shadow: inset 0 0  2px 1px #ab9eff;
+  height: 100%;
+  overflow: scroll;
+  padding: 12px 16px;
+}
+
+/* Hide scrollbar */
+#choose-location-bg::-webkit-scrollbar {
+  display: none;
+}
+
+#choose-location-bg {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* #close-button styles inside TOP SECTION (above) */
+
+.choose-location-open {
+  height: 90vh;
+}
+
+.choose-location-closed {
+  height: 0;
+}
+
+.choose-location-open-anim {
+  animation: open-choose-location 250ms forwards;
+}
+
+.choose-location-closed-anim {
+  animation: close-choose-location 250ms forwards;
+}
+
+@keyframes open-choose-location {
+  from  { height: 0vh; }
+  to    { height: 90vh; }
+}
+
+@keyframes close-choose-location {
+  from  { height: 90vh; }
+  to    { height: 0vh; }
+}
+
+/* Form */
+#choose-location-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.input-container > label {
+  color: #8cbaff;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.input-container > input {
+  border-radius: 5px;
+  border: 2px solid #8cbaff;
+  background-color: #e1edff;
+  font-size: 1.5rem;
+  outline: none;
+  padding: 12px 20px;
+  transition: all 200ms;
+}
+
+.input-container > select {
+  background-color: #e1edff;
+  border: 2px solid #8cbaff;
+  border-radius: 5px;
+  outline: none;
+  transition: all 200ms;
+}
+
+.input-container > input:focus,
+.input-container > select:focus {
+  border: 2px solid #ffb936;
+  box-shadow: inset 0 0 2px 1px #ffb936;
+  transition: all 100ms;
+}
+
+.input-container option {
+  font-size: 1.125rem;
+  padding: 2px 6px;
+}
+
+#chosen-option {
+  color: #8cbaff;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+#alert {
+  background-color: #aa0022;
+  border: 2px solid #e1edff;
+  color: #e1edff;
+  margin-bottom: 20px;
+  padding: 4px 8px;
+}
+
+#submit-button {
+  align-self: flex-end;
+  background-color: transparent;
+  border: 2px solid #8cbaff;
+  border-radius: 5px;
+  color: #8cbaff;
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 8px 4px;
+  text-transform: uppercase;
+  transition: all 200ms;
+  width: 50%;
+}
+
+#submit-button:active {
+  background-color: #8cbaff;
+  color: #0f006d;
+}
+
+@media only screen and (min-width: 500px) {
+  #choose-location-form {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (min-width: 630px) {
+  #choose-location-form {
+    width: 60%;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (min-width: 880px) {
+  #choose-location-form {
+    width: 50%;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (min-width: 1100px) {
+  #choose-location-container {
+    width: 880px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .input-container > select {
+    cursor: pointer;
+  }
+
+  .input-container option:hover {
+    background-color: #826efd;
+    color: #ffffff;
+  }
+  
+  #submit-button:hover {
+    background-color: #8cbaff;
+    color: #0f006d;
+  }
+  
+  #submit-button:active {
+    background-color: transparent;
+    color: #8cbaff;
+  }
+}
+
+
+/* 6. DATA SECTION */
+
+#data-section {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 80%;
+  margin-bottom: 32px;
+}
+
+.astro-data-section {
+  height: auto;
+  margin: 0 16px 16px 16px;
+  min-width: 200px;
+  width: 100%;
+}
+
+.astro-data-section.section-styles {
+  padding: 32px 16px;
+}
+
+.astro-data-section:nth-of-type(3n) {
+  background-color: rgba(0, 65, 163, 0.85);
+}
+
+.astro-data-section:nth-of-type(3n - 1) {
+  background-color: rgba(0, 65, 163, 0.75);
+}
+
+.astro-data-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.astro-data-header {
+  color: #8cbaff;
+  font-size: 1.25;
+  margin-bottom: 20px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.astro-data-result {
+  font-size: 1.5rem;
+}
+
+@media only screen and (min-width: 500px) {
+  #data-section {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 2fr 2fr;
+    grid-auto-rows: 1fr;
+  }
+
+  .astro-data-section {
+    height: 100%;
+    margin: 0;
+    min-width: auto;
+    width: auto;
+  }
+}
+
+@media only screen and (min-width: 1100px) {
+  #data-section {
+    width: 880px;
+  }
+}
+
+
+/* 7. UTILITIES */
+
+/* Throbber */
+.throbber {
+  align-items: center;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  margin: 0 auto;
+  position: relative;
+  width: 50px;
+}
+
+.circle-of-dots {
+  align-items: center;
+  animation: spin-animation 4000ms linear infinite;
+  display: flex;
+  height: 90%;
+  position: absolute;
+  width: 90%;
+}
+
+@keyframes spin-animation {
+  from  { transform: rotate(0); }
+  to    { transform: rotate(359deg); }
+}
+
+.dot-container {
+  height: 15%;
+  position: absolute;
+  transform-origin: right;
+  width: 50%;
+}
+
+.dot {
+  animation: opacity-animation 1000ms linear infinite;
+  background-color: #8cbaff;
+  border-radius: 50%;
+  height: 100%;
+  width: 30%;
+}
+
+@keyframes opacity-animation {
+  from  { opacity: 1; }
+  50%   { opacity: 0; }
+  to    { opacity: 1; }
 }
